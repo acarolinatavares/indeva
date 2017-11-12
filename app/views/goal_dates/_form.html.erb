@@ -1,0 +1,32 @@
+<%= form_with(model: goal_date, local: true) do |form| %>
+  <% if goal_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(goal_date.errors.count, "error") %> prohibited this goal_date from being saved:</h2>
+
+      <ul>
+      <% goal_date.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :day %>
+    <%= form.date_select :day, id: :goal_date_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value, id: :goal_date_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :goal_id %>
+    <%= form.number_field :goal_id, id: :goal_date_goal_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

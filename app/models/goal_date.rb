@@ -1,0 +1,2 @@
+class GoalDate < ApplicationRecord
+end

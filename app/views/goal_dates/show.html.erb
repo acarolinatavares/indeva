@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @goal_date.day %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @goal_date.value %>
+</p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @goal_date.goal_id %>
+</p>
+
+<%= link_to 'Edit', edit_goal_date_path(@goal_date) %> |
+<%= link_to 'Back', goal_dates_path %>
