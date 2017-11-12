@@ -1,32 +1,15 @@
-<%= form_with(model: store, local: true) do |form| %>
-  <% if store.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(store.errors.count, "error") %> prohibited this store from being saved:</h2>
-
-      <ul>
-      <% store.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= simple_form_for @store do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :owner_id, as: :hidden, input_html: { value: current_owner.id } %>
+    <h3> Funcionarios </h3>
+    <div id='employees'>
+      <%= f.simple_fields_for :employees do |employee| %>
+        <%= render 'employee_fields', f: employee %>
       <% end %>
-      </ul>
+      <div class='links'>
+        <%= link_to_add_association 'add employee', f, :employees %>        
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :store_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :store_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.number_field :owner_id, id: :store_owner_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <%= f.button :submit %>
 <% end %>
