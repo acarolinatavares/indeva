@@ -4,6 +4,7 @@ class CreateGoals < ActiveRecord::Migration[5.1]
       t.date :init_date
       t.date :end_date
       t.date :reference_month
+      t.string :name
       t.decimal :value
       t.integer :store_id
 

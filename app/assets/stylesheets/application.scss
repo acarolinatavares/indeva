@@ -17,6 +17,18 @@
   color: #225F86 !important;
 }
 
+.login {
+  color: #bd9d51 !important;
+}
+
+.login_btn {
+  background-color: #bd9d51 !important;
+}
+
+.login_page {
+  background-image: url('dust_scratches.png');
+}
+
 html, body {
   font-family: 'Open Sans' !important;
 }
@@ -33,14 +45,14 @@ header, main, footer {
 
 .tabs .tab a:hover, .tabs .tab a.active {
   background-color: transparent;
-  color: #00695c;
+  color: #225F86;
 }
 
 .tabs .indicator {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #00695c;
+  background-color: #225F86;
   will-change: left, right;
 }
 
