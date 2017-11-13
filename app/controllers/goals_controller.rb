@@ -16,45 +16,41 @@ class GoalsController < ApplicationController
   end
 
   def create
-    @goal = Goal.new(goal_params)
-
-    respond_to do |format|
-      if @goal.save
-        format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
-        format.json { render :show, status: :created, location: @goal }
-      else
-        format.html { render :new }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    operation = Goal::Create.call(goal_params)
+    goal = operation.instance
+    if goal.errors.any?
+      flash[:notice] = 'Erro ao cadastrar a meta. Verifique se todos os campos foram preenchidos corretamente.'
+      render :new
+    else
+      current_owner.add_role :admin, goal
+      flash[:notice] = 'Loja criada com sucesso.'
+      redirect_to goal
     end
   end
 
   def update
-    respond_to do |format|
-      if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @goal }
-      else
-        format.html { render :edit }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    if @goal.update(goal_params)
+      flash[:notice] = 'Loja atualizada com sucesso.'
+      redirect_to @goal
+    else
+      flash[:notice] = 'Erro ao atualizar a meta. Verifique se todos os campos foram preenchidos corretamente.'
+      render :edit
     end
   end
 
   def destroy
     @goal.destroy
-    respond_to do |format|
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Loja apagada.'
+    redirect_to goals_url
   end
 
   private
     def set_goal
       @goal = Goal.find(params[:id])
+      @goal_dates = @goal.goal_dates
     end
 
     def goal_params
-      params.require(:goal).permit(:init_date, :end_date, :reference_month, :value)
+      params.require(:goal).permit(:init_date, :end_date, :reference_month, :value, :store_id, :name)
     end
 end

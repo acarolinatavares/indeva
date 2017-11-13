@@ -1,24 +1,70 @@
-<p id="notice"><%= notice %></p>
+<div class='row'>
+  <div class='col s12'>
+    <h4 class='textos'><%= get_name(@goal) %></h4>
+  </div>
+</div>
 
-<p>
-  <strong>Init date:</strong>
-  <%= @goal.init_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @goal.end_date %>
-</p>
-
-<p>
-  <strong>Reference month:</strong>
-  <%= @goal.reference_month %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @goal.value %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<div class='row'>
+  <div class='col s12 right-align'>
+    <%= link_to(edit_goal_path(@goal), class: 'btn-flat') do %>
+        <i class='material-icons'>add</i>
+        editar meta
+    <% end %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col s12'>
+    <ul class='tabs'>
+      <li class='tab col s6'>
+        <a href='#goal'>Dados da Meta</a>
+      </li>
+      <li class='tab col s6'>
+        <a href='#goal_dates'>Meta por Dia</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class='row'>
+  <div class='col s12'>
+    <div class='col s12' id="goal">
+      </br>
+      <div class='row'>
+        <div class='input-field col s12'>
+          <p class='caption'>
+            Loja
+          </p>
+          <input type='text' disabled='disabled' value="<%=@goal.store.name%>">
+        </div>
+        <div class="row">
+          <div class='input-field col s4'>
+            <p class='caption'>
+              Mês de Referência
+            </p>
+            <input type='text' disabled='disabled' value="<%=@goal.reference_month.strftime('%m/%Y') unless @goal.reference_month.nil?%>">
+          </div>
+          <div class='input-field col s4'>
+            <p class='caption'>
+              Data Inicial
+            </p>
+            <input type='text' disabled='disabled' value="<%=@goal.init_date.strftime('%d/%m/%Y')%>">
+          </div>
+          <div class='input-field col s4'>
+            <p class='caption'>
+              Data Final
+            </p>
+            <input type='text' disabled='disabled' value="<%=@goal.end_date.strftime('%d/%m/%Y')%>">
+          </div>
+        </div>
+        <div class='input-field col s12'>
+          <p class='caption'>
+            Valor Total
+          </p>
+          <input type='text' disabled='disabled' value="R$ <%=@goal.value%>">
+        </div>
+      </div>
+    </div>
+    <div class="col s12" id="goal_dates">
+      <%= render 'goal_dates'%>
+    </div>
+  </div>
+</div>
