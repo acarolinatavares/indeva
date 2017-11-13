@@ -3,7 +3,7 @@
       <%= f.input :name, label: 'Nome' %>
       <%= f.input :address, label: 'Endereço' %>
       <%= f.input :owner_id, as: :hidden, input_html: { value: current_owner.id } %>
-      <h5 class='teal-text text-dark-2'>Funcionários</h5>
+      <h5 class='textos'>Funcionários</h5>
       <div id='employees'>
         <%= f.simple_fields_for :employees do |employee| %>
             <%= render 'employee_fields', f: employee %>

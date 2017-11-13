@@ -1,0 +1,25 @@
+<ul class='side-nav fixed'>
+  <li>
+    <div class='userView center'>
+      <div class='background grey lighten-3'></div>
+      <a href='<%= root_path %>'>
+        <%= image_tag('indeva.png') %>
+      </a>
+      <span style="color: #bd9d51 !important"><%= current_owner.email%></span>
+    </div>
+  </li>
+  <li>
+    <%= link_to(stores_path, class:'textos') do %>
+        <i class='material-icons' style="color: #bd9d51 !important">store</i>
+        <b>Lojas</b>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to(destroy_owner_session_path, method: :delete, class:'textos') do %>
+        <i class='material-icons' style="color: #bd9d51 !important">clear</i>
+        <b>Sair</b>
+    <% end %>
+  </li>
+
+</ul>

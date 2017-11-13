@@ -13,12 +13,16 @@
 
 }
 
+.textos {
+  color: #225F86 !important;
+}
+
 html, body {
   font-family: 'Open Sans' !important;
 }
 
 header, main, footer {
-  padding-left: 300px;
+  padding-left: 200px;
 }
 
 @media only screen and (max-width : 992px) {
