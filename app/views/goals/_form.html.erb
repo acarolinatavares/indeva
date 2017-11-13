@@ -1,37 +1,9 @@
-<%= form_with(model: goal, local: true) do |form| %>
-  <% if goal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
-
-      <ul>
-      <% goal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for @goal do |f| %>
+    <div class='col s12' id='form'>
+      <%= f.association :store, label: 'Loja' %>
+      <%= f.input :init_date, label: 'Data de Início' %>
+      <%= f.input :end_date, label: 'Data de Fim' %>
+      <%= f.input :value, label: 'Valor Total' %>
+      <%= f.button :submit, 'Salvar' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :init_date %>
-    <%= form.date_select :init_date, id: :goal_init_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date, id: :goal_end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reference_month %>
-    <%= form.date_select :reference_month, id: :goal_reference_month %>
-  </div>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.text_field :value, id: :goal_value %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
