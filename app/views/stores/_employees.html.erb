@@ -1,0 +1,32 @@
+<div class='row'>
+  <div class='col s12'>
+    <table class='bordered highlight'>
+      <thead>
+      <tr>
+        <th class='center-align'>Nome</th>
+        <th class='center-align' colspan="2"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @employees.each do |employee| %>
+          <tr>
+            <td class='center-align'><%= employee.name %></td>
+            <td class='center-align'>
+              <%= link_to(edit_employee_path(employee), class: 'btn-flat tooltipped', 'data-tooltip' => 'Editar') do %>
+                  <i class='material-icons'>mode_edit</i>
+              <% end %>
+            </td>
+            <td class='center-align'>
+              <% if @employees.count > 1%>
+                  <%= link_to(employee_path(employee), method: :delete, class: 'btn-flat tooltipped', 'data-tooltip' => 'Remover', 'data-confirm' => 'Tem certeza que deseja apagar essa loja?') do %>
+                      <i class='material-icons'>delete</i>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

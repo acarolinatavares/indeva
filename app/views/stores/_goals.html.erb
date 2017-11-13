@@ -1,0 +1,54 @@
+<div class='row'>
+  <div class='col s12 right-align'>
+    <%= link_to(new_goal_path, class: 'btn-flat') do %>
+        <i class='material-icons'>add</i>
+        cadastrar meta
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col s12'>
+    <table class='bordered highlight'>
+      <thead>
+      <tr>
+        <th class='center-align'>Nome</th>
+        <th class='center-align'>Mês de Referência</th>
+        <th class='center-align' colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @goals.each do |goal| %>
+          <tr>
+            <td class='center-align'><%= goal.name %></td>
+            <td class='center-align'><%= goal.reference_month.strftime('%d/%m') %></td>
+            <td class='center-align'>
+              <%= link_to(goal_path(store), class: 'btn-flat tooltipped', 'data-tooltip' => 'Visualizar') do %>
+                  <i class='material-icons'>remove_red_eye</i>
+              <% end %>
+            </td>
+            <td class='center-align'>
+              <%= link_to(edit_goal_path(goal), class: 'btn-flat tooltipped', 'data-tooltip' => 'Editar') do %>
+                  <i class='material-icons'>mode_edit</i>
+              <% end %>
+            </td>
+            <td class='center-align'>
+              <% if @goals.count > 1%>
+                  <%= link_to(goal_path(goal), method: :delete, class: 'btn-flat tooltipped', 'data-tooltip' => 'Remover', 'data-confirm' => 'Tem certeza que deseja apagar essa loja?') do %>
+                      <i class='material-icons'>delete</i>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% if @goals.empty? %>
+        <p class='card-panel center-align hoverable'>
+          <i class='left material-icons'>sentiment_neutral</i>
+          Nenhuma meta cadastrada
+        </p>
+    <% end %>
+  </div>
+</div>

@@ -48,6 +48,8 @@ class StoresController < ApplicationController
   private
   def set_store
     @store = Store.find(params[:id])
+    @employees = @store.employees
+    @goals = @store.goals
   end
 
   def store_params
