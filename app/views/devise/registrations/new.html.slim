@@ -1,0 +1,28 @@
+body.grey.lighten-4
+  div class="row"
+    div.col.m3
+    div class="col s12 m6"
+      div class="card login blue-grey lighten-5"
+        div class="card-content"
+          span.card-title.accent-2.center Indeva
+          = flash_messages
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            div.row
+              div.input-field
+                = f.input :email, required: true, autofocus: true
+            div.row
+              div.input-field
+                = f.input :password, required: true, label: 'Senha'
+            div.row
+              div.input-field
+                = f.input :password_confirmation, required: true, label: 'Confirmaçao da Senha'
+        div class="card-action center"
+          button id="submit_form" class="btn login_btn" type="submit" name="action" style="margin-right: 15px;" Cadastrar
+    div.col.m3
+
+javascript:
+    var form = document.getElementById("new_owner");
+
+    document.getElementById("submit_form").addEventListener("click", function () {
+        form.submit();
+    });
