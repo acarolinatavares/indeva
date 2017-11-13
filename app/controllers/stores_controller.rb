@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+  load_and_authorize_resource
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -19,6 +20,7 @@ class StoresController < ApplicationController
     @store = Store.new(store_params)
 
     if @store.save
+      current_owner.add_role :admin, @store
       flash[:notice] = 'Loja criada com sucesso.'
       redirect_to @store
     else
