@@ -1,15 +1,18 @@
 <%= simple_form_for @store do |f| %>
-    <%= f.input :name %>
-    <%= f.input :address %>
-    <%= f.input :owner_id, as: :hidden, input_html: { value: current_owner.id } %>
-    <h3> Funcionarios </h3>
-    <div id='employees'>
-      <%= f.simple_fields_for :employees do |employee| %>
-        <%= render 'employee_fields', f: employee %>
-      <% end %>
-      <div class='links'>
-        <%= link_to_add_association 'add employee', f, :employees %>        
+    <div class='col s12' id='form'>
+      <%= f.input :name, label: 'Nome' %>
+      <%= f.input :address, label: 'Endereço' %>
+      <%= f.input :owner_id, as: :hidden, input_html: { value: current_owner.id } %>
+      <h5 class='teal-text text-dark-2'>Funcionários</h5>
+      <div id='employees'>
+        <%= f.simple_fields_for :employees do |employee| %>
+            <%= render 'employee_fields', f: employee %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '<i class="material-icons">add</i>'.html_safe, f, :employees %>
+        </div>
       </div>
+      </br>
+      <%= f.button :submit %>
     </div>
-    <%= f.button :submit %>
 <% end %>

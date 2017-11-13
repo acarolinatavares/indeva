@@ -1,0 +1,47 @@
+@import "materialize";
+@import "materialize/components/color";
+@import "material_icons";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@font-face {
+
+  color: #2E2F30;
+  font: {
+    family: 'Open Sans', sans-serif;
+    size: 12px;
+  }
+
+}
+
+html, body {
+  font-family: 'Open Sans' !important;
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  background-color: transparent;
+  color: #00695c;
+}
+
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: #00695c;
+  will-change: left, right;
+}
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+}

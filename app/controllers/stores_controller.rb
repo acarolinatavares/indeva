@@ -18,14 +18,12 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
 
-    respond_to do |format|
-      if @store.save
-        format.html { redirect_to @store, notice: 'Store was successfully created.' }
-        format.json { render :show, status: :created, location: @store }
-      else
-        format.html { render :new }
-        format.json { render json: @store.errors, status: :unprocessable_entity }
-      end
+    if @store.save
+      flash[:notice] = 'Loja creada com sucesso.'
+      redirect_to @store
+    else
+      flash[:notice] = 'Erro ao cadastrar a loja. Verifique se todos os campos foram preenchidos, e se pelo menos um funcionário foi vinculado à loja.'
+      render :new
     end
   end
 
@@ -50,11 +48,12 @@ class StoresController < ApplicationController
   end
 
   private
-    def set_store
-      @store = Store.find(params[:id])
-    end
+  def set_store
+    @store = Store.find(params[:id])
+  end
 
-    def store_params
-      params.require(:store).permit(:name, :address, :owner_id, temployees_attributes: [:id, :name, :rg, :_destroy])
-    end
+  def store_params
+    params.require(:store).permit(:name, :address, :owner_id, employees_attributes: [:id, :name, :rg, :_destroy])
+  end
+
 end

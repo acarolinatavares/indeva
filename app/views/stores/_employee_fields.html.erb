@@ -1,5 +1,13 @@
 <div class='nested-fields'>
-  <%= f.input :name %>
-  <%= f.input :rg %>
-  <%= link_to_remove_association 'Remover', f %>
+  <div class='row s12'>
+    <div class='col s4'>
+      <%= f.input :name, label: 'Nome' %>
+    </div>
+    <div class='col s4'>
+      <%= f.input :rg, label: 'RG' %>
+    </div>
+    <div class='col s2'>
+      <%= link_to_remove_association '<i class="material-icons">delete</i>'.html_safe, f %>
+    </div>
+  </div>
 </div>
